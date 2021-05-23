@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-const NewReservation = () => {
+function NewReservation() {
     const history = useHistory();
     const [formData, setFormData] = useState({
         first_name: "",
@@ -20,6 +20,17 @@ function handleSubmit(event) {
     event.preventDefault();
     history.push(`/dashboard?date=${formData.reservation_date}`)
 }
+
+// Validation function - check if reservation date is Tuesday or in the past
+
+function validateDate() {
+    const reserveDate = new Date(formData.reservation_date);
+    const foundErrors = [];
+    if (reserveDate.getDay() === 2) { // 2 is Tuesday
+        foundErrors.push({ message: "Restaurant is closed on Tuesday. Reservations cannot be made."})
+    }
+}
+
     return (
         <form>
             <label htmlFor="first_name">First Name:&nbsp;</label>
