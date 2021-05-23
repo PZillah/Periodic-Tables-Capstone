@@ -86,7 +86,6 @@ function validateFields(foundErrors) {
 			foundErrors.push({ message: `${field.split("_").join(" ")} cannot be left blank.`})
 		}
 	}
-
 	if(foundErrors.length > 0) {
 		return false;
 	}
