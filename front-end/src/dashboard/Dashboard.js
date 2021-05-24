@@ -36,19 +36,30 @@ function Dashboard({ date }) {
         <h4 className="mb-0">Reservations for {date}</h4>
       </div>
       <ErrorAlert error={reservationsError} />
-      
-			
-			
-    <h4 className="mb-0">Tables</h4>
 
-		<ErrorAlert error={tablesError} />
+      <h4 className="mb-0">Tables</h4>
 
-		
+      <ErrorAlert error={tablesError} />
 
       {JSON.stringify(reservations)}
-      <button type="button" onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>Previous</button>
-			<button type="button" onClick={() => history.push(`/dashboard?date=${today()}`)}>Today</button>
-			<button type="button" onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
+      <button
+        type="button"
+        onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
+      >
+        Previous
+      </button>
+      <button
+        type="button"
+        onClick={() => history.push(`/dashboard?date=${today()}`)}
+      >
+        Today
+      </button>
+      <button
+        type="button"
+        onClick={() => history.push(`/dashboard?date=${next(date)}`)}
+      >
+        Next
+      </button>
     </main>
   );
 }
