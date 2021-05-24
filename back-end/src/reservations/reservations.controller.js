@@ -17,42 +17,42 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 //make sure form has all field filled in correctly 
 //similar to validateNewReservation
 async function validForm(req, res, next) {
-  if (!req.body.data) return next({ status: 400, message: 'Data Missing!' });
+  if (!req.body.data) return next({ status: 400, message: 'Data Missing' });
 
   const { first_name, last_name, mobile_number, people, reservation_date, reservation_time, status } = req.body.data;
 
   if (!first_name)
-    return next({ status: 400, message: 'Be sure to include first_name' });
+    return next({ status: 400, message: 'Please include first_name' });
 
   if (!last_name)
-    return next({ status: 400, message: 'Be sure to include last_name' });
+    return next({ status: 400, message: 'Please include last_name' });
 
   if (!mobile_number)
-    return next({ status: 400, message: 'Be sure to include mobile_number' });
+    return next({ status: 400, message: 'Please include mobile_number' });
 
   if (!people)
-    return next({ status: 400, message: 'Be sure to include people' });
+    return next({ status: 400, message: 'Please include people' });
 
   if (!reservation_date)
-    return next({ status: 400, message: 'Be sure to include reservation_date' });
+    return next({ status: 400, message: 'Please include reservation_date' });
 
   if (!reservation_time)
-    return next({ status: 400, message: 'Be sure to include reservation_time' });
+    return next({ status: 400, message: 'Please include reservation_time' });
 
   if (!reservation_date.match(/\d{4}-\d{2}-\d{2}/))
-    return next({ status: 400, message: 'reservation_date is invalid!' });
+    return next({ status: 400, message: 'reservation_date is invalid' });
 
   if (!reservation_time.match(/\d{2}:\d{2}/))
-    return next({ status: 400, message: 'reservation_time is invalid!' });
+    return next({ status: 400, message: 'reservation_time is invalid' });
 
   if (typeof people !== 'number')
-    return next({ status: 400, message: 'people is not a number!' });
+    return next({ status: 400, message: 'people is not a number' });
 
   if (status === 'seated')
-    return next({ status: 400, message: 'status can not be seated!' });
+    return next({ status: 400, message: 'status can not be seated' });
 
   if (status === 'finished')
-    return next({ status: 400, message: 'status can not be finished!' });
+    return next({ status: 400, message: 'status can not be finished' });
 
   res.locals.reservation = { first_name, last_name, mobile_number, people, reservation_date, reservation_time };
   next();
@@ -63,10 +63,10 @@ async function validDate(req, res, next) {
   const currentDate = new Date();
 
   if (date.getUTCDay() === 2)
-    return next({ status: 400, message: "We're closed on Tuesdays!" });
+    return next({ status: 400, message: "We're closed on Tuesdays." });
 
   if (date.valueOf() < currentDate.valueOf() && date.toUTCString().slice(0, 16) !== currentDate.toUTCString().slice(0, 16))
-    return next({ status: 400, message: "Reservations must be made in the future!" });
+    return next({ status: 400, message: "Reservations must be made in the future." });
 
   next();
 }
@@ -79,20 +79,20 @@ function validTime(req, res, next) {
   hour = Number(hour);
   minutes = Number(minutes);
 
-  // Current Time from Frontend Request
+  // Current Time from frontend Request
   const currentTime = req.body.data.current_time;
   const date = new Date(res.locals.reservation.reservation_date);
   const currentDate = new Date();
 
   // Checks to see if the requested time has passed and is on the current date
   if (currentTime > time && date.toUTCString().slice(0, 16) === currentDate.toUTCString().slice(0, 16))
-    return next({ status: 400, message: "Time has already passed!" });
+    return next({ status: 400, message: "Time has passed." });
 
   if (hour < 10 || (hour <= 10 && minutes < 30))
-    return next({ status: 400, message: "We're not open yet" });
+    return next({ status: 400, message: "We're not open yet." });
 
   if (hour > 21 || (hour >= 21 && minutes > 30))
-    return next({ status: 400, message: "Too close to closing time or closed!" });
+    return next({ status: 400, message: "Too close to closing time or closed." });
 
   next();
 }
@@ -102,7 +102,7 @@ async function validStatusUpdate(req, res, next) {
   const { status } = req.body.data;
 
   if (currentStatus === 'finished')
-    return next({ status: 400, message: 'a finished reservation cannot be updated' })
+    return next({ status: 400, message: 'A finished reservation cannot be updated' })
 
   if (status === 'cancelled')
     return next();
@@ -114,36 +114,36 @@ async function validStatusUpdate(req, res, next) {
 }
 
 async function validUpdate(req, res, next) {
-  if (!req.body.data) return next({ status: 400, message: 'Data Missing!' });
+  if (!req.body.data) return next({ status: 400, message: 'Data Missing.' });
 
   const { first_name, last_name, mobile_number, people, reservation_date, reservation_time } = req.body.data;
 
   if (!first_name)
-    return next({ status: 400, message: 'Be sure to include first_name' });
+    return next({ status: 400, message: 'Please include first_name' });
 
   if (!last_name)
-    return next({ status: 400, message: 'Be sure to include last_name' });
+    return next({ status: 400, message: 'Please include last_name' });
 
   if (!mobile_number)
-    return next({ status: 400, message: 'Be sure to include mobile_number' });
+    return next({ status: 400, message: 'Please include mobile_number' });
 
   if (!people)
-    return next({ status: 400, message: 'Be sure to include people' });
+    return next({ status: 400, message: 'Please include people' });
 
   if (!reservation_date)
-    return next({ status: 400, message: 'Be sure to include reservation_date' });
+    return next({ status: 400, message: 'Please include reservation_date' });
 
   if (!reservation_time)
-    return next({ status: 400, message: 'Be sure to include reservation_time' });
+    return next({ status: 400, message: 'Please include reservation_time' });
 
   if (!reservation_date.match(/\d{4}-\d{2}-\d{2}/))
-    return next({ status: 400, message: 'reservation_date is invalid!' });
+    return next({ status: 400, message: 'reservation_date is invalid.' });
 
   if (!reservation_time.match(/\d{2}:\d{2}/))
-    return next({ status: 400, message: 'reservation_time is invalid!' });
+    return next({ status: 400, message: 'reservation_time is invalid.' });
 
   if (typeof people !== 'number')
-    return next({ status: 400, message: 'people is not a number!' });
+    return next({ status: 400, message: 'people is not a number.' });
 
   res.locals.reservation = { first_name, last_name, mobile_number, people, reservation_date, reservation_time };
 

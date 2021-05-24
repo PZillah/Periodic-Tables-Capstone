@@ -38,7 +38,6 @@ async function validateNewTable(req, res, next) {
     res.locals.newTable.occupied = true;
   }
 
-
   next();
 }
 

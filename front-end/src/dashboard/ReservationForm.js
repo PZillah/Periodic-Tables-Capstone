@@ -11,14 +11,15 @@ function ReservationForm({ type }) {
   const { reservation_id } = useParams();
   const history = useHistory();
   const [reservationsError, setReservationsError] = useState(null);
-  const [formData, setFormData] = useState({
+  const initialState = {
     first_name: "",
     last_name: "",
     mobile_number: "",
     reservation_date: "",
     reservation_time: "",
     people: 1,
-  });
+  };
+  const [formData, setFormData] = useState({ ...initialState });
   
   const handleChange = ({ target }) => {
     const value =
@@ -51,13 +52,13 @@ function ReservationForm({ type }) {
     let currentDay = new Date();
     try {
       if (newDate.getDay() === 2)
-        throw new Error("Restaurant is closed on Tuesdays! Why you say, I don't know...");
-      if (newDate < currentDay) throw new Error("Oh no that time is in the past (Getting the time machine ready for you now).");
+        throw new Error("Restaurant is closed on Tuesdays.");
+      if (newDate < currentDay) throw new Error("Reservation cannot be made: Date is in the past.");
       //check is within the correct time frame
       let time = Number(formData.reservation_time.replace(":", ""));
       if (time < 1030 || time > 2130)
         throw new Error(
-          "Reservations are only valid from 10:30 AM to 9:30 PM. Afterwards we go to the pub if you want to join."
+          "Reservations are available from 10:30 AM to 9:30 PM."
         );
       if (type === "Edit") {
         await updateReservation(reservation_id, { data: formData });
@@ -168,11 +169,11 @@ function ReservationForm({ type }) {
           </label>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-sm btn-info">Submit</button>
+          <button type="submit" className="btn btn-sm btn-success">Submit</button>
           <button className="mx-3 btn btn-sm btn-danger" onClick={() => history.goBack()}>
             Cancel
           </button>
-          <button className="btn btn-sm btn-success" onClick={() => setFormData(initialState)}>Reset</button>
+          <button className="btn btn-sm btn-info" onClick={() => setFormData(initialState)}>Reset</button>
         </div>
       </form>
       <ErrorAlert error={reservationsError} />
