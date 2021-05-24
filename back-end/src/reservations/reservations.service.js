@@ -1,25 +1,55 @@
 const knex = require("../db/connection");
 
-const tableName = "reservations";
+// return reservation table 
+const getAllReservations = async (date) => {
+    return await knex("reservations")
+        .select("*")
+        .whereNot('status', 'finished')
+        .where({'reservation_date': date})
+        .orderBy('reservation_time')
+        .returning('*')
+};
 
-function list(date) {
-	if(date) {
-		return knex(tableName)
-			.select("*")
-			.where({ reservation_date: date });
-	}
+const findWithMobileNumber = (mobile_number) =>
+    knex("reservations")
+        .whereRaw(
+         "translate(mobile_number, '() -', '') like ?",
+         `%${mobile_number.replace(/\D/g, "")}%`
+        )
+        .orderBy("reservation_date")
+ 
+function create(newReservation) {
+    return knex("reservations")
+        .insert(newReservation)
+        .returning("*");
+};
 
-	return knex(tableName)
-		.select("*");
-}
+function read(reservation_id) {
+    return knex("reservations")
+        .select("*")
+        .where({reservation_id})
+        .first();
+};
 
-function create(reservation) {
-	return knex(tableName)
-		.insert(reservation)
-		.returning("*");
-}
+const update = (reservation_id, updatedReservation) =>
+    knex('reservations')
+        .where('reservation_id', reservation_id)
+        .update(updatedReservation)
+        .returning(['first_name', 'last_name', 'mobile_number', 'people', 'reservation_date', 'reservation_time']);
 
-module.exports = {
-	list,
-	create,
-}
+const updateStatus = (reservation_id, status) =>
+    knex('reservations')
+        .where('reservation_id', reservation_id)
+        .update({ status: status })
+        .returning('status');
+
+
+
+module.exports ={
+    getAllReservations,
+    findWithMobileNumber,
+    read, 
+    create,
+    update, 
+    updateStatus
+};
