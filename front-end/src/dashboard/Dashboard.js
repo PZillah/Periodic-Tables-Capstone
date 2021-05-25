@@ -60,7 +60,6 @@ function Dashboard() {
       <div className="d-md-flex mb-3 "></div>
       <ErrorAlert error={reservationsError} />
       <ErrorAlert error={tablesError} />
-      <h3>Reservations</h3>
       {reservations.length ? (
         <h3>Reservations</h3>
       ) : (
