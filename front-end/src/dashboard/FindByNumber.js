@@ -41,7 +41,7 @@ export default function FindByNumber() {
           <div className="form-group">
             <input
               name="mobile_number"
-              placeholder="Enter a customer's phone number"
+              placeholder="Enter a phone number"
               onChange={handleChange}
               className="form-control"
               required

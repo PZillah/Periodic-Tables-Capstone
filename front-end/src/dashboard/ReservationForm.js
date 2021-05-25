@@ -112,6 +112,7 @@ function ReservationForm({ type }) {
               className="form-control"
               id="mobile_number"
               type="tel"
+              placeholder="###-###-####"
               pattern="(1?)\(?([0-9]{3})?\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})"
               name="mobile_number"
               onChange={handleChange}
