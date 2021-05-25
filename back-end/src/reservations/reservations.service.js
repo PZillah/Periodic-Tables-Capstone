@@ -1,6 +1,5 @@
 const knex = require("../db/connection");
 
-// return reservation table 
 const getAllReservations = async (date) => {
     return await knex("reservations")
         .select("*")

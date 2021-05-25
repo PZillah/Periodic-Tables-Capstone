@@ -14,7 +14,7 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
   next({status: 404, message: `Reservation ${reservation_id} cannot be found`})
 }
 
-//make sure form has all field filled in correctly 
+// Validation Middleware 
 //similar to validateNewReservation
 async function validForm(req, res, next) {
   if (!req.body.data) return next({ status: 400, message: 'Data Missing' });

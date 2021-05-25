@@ -54,7 +54,7 @@ function ReservationForm({ type }) {
       if (newDate.getDay() === 2)
         throw new Error("Restaurant is closed on Tuesdays.");
       if (newDate < currentDay) throw new Error("Reservation cannot be made: Date is in the past.");
-      //check is within the correct time frame
+      //checks if within the correct time frame
       let time = Number(formData.reservation_time.replace(":", ""));
       if (time < 1030 || time > 2130)
         throw new Error(
