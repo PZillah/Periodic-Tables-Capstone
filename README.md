@@ -8,6 +8,17 @@ There are no user stories for deployment: it is expected that you will deploy th
 
 There are no user stories for logging: it is expected that you will add logging to the application with enough detail to help you diagnose issues in production.
 
+# Screenshots
+DASHBOARD
+<img width="1107" alt="Screen Shot 2021-05-25 at 9 12 23 AM" src="https://user-images.githubusercontent.com/74835275/119572856-4235c280-bd68-11eb-8dac-0b74717f9a61.png">
+SEARCH PAGE
+<img width="1508" alt="Screen Shot 2021-05-24 at 4 17 38 PM" src="https://user-images.githubusercontent.com/74835275/119573045-8aed7b80-bd68-11eb-9e17-5087e3ef5d1c.png">
+MAKE A NEW RESERVATION PAGE
+<img width="1236" alt="Screen Shot 2021-05-24 at 4 17 59 PM" src="https://user-images.githubusercontent.com/74835275/119573186-c5efaf00-bd68-11eb-9007-7dbaf6e47a77.png">
+MAKE A NEW TABLE PAGE
+<img width="1494" alt="Screen Shot 2021-05-24 at 4 18 16 PM" src="https://user-images.githubusercontent.com/74835275/119573294-e586d780-bd68-11eb-82da-6186362eb18f.png">
+
+
 ## Existing files
 
 This repository is set up as a *monorepo*, meaning that the frontend and backend projects are in one repository. This allows you to open both projects in the same editor.
