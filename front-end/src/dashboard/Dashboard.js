@@ -43,9 +43,7 @@ function Dashboard() {
     <main className="text-center">
       <h1 className="m-3">{formatDate(date)}</h1>
       <button onClick={() => setDate(previous(date))} className="btn btn-sm btn-secondary">Previous Day</button>
-      <button className="mx-3 btn btn-sm btn-success" onClick={() => setDate(today())}>
-        Today
-      </button>
+      <button className="mx-3 btn btn-sm btn-success" onClick={() => setDate(today())}>Today</button>
       <button onClick={() => setDate(next(date))} className="btn btn-sm btn-secondary">Next Day</button>
       <br />
       <label htmlFor="reservation_date" className="form-label m-3">
@@ -73,7 +71,8 @@ function Dashboard() {
           />
         ))}
       </div>
-      <h3>Available Tables </h3>
+      <br />
+      <h3>Available Tables</h3>
       <div className="d-flex justify-content-center mb-1 flex-wrap">
         {tables.map((table) => (
           <Tables key={table.table_id} table={table} />

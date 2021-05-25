@@ -10,7 +10,7 @@ export default function Reservation({ reservation, type }) {
   const handleCancel = async () => {
     if (
       window.confirm(
-        "Do you want to cancel this reservation? \n \n \nThis cannot be undone."
+        "Do you want to cancel this reservation? \n \nThis cannot be undone."
       )
     ) {
       try {
