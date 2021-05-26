@@ -1,4 +1,5 @@
-# Capstone: PERIODIC TABLES Restaurant Reservation System
+# Capstone: PERIODIC TABLES 
+# Restaurant Reservation System
 
 (Link to live application coming soon!)
 
