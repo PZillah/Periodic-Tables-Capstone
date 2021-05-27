@@ -37,7 +37,7 @@ export default function FindByNumber() {
     <>
       <h2 className="text-center pb-2">Search Current Reservation</h2>
       <div className="d-flex flex-column align-items-center">
-        <form onSubmit={handleSearch} className="form-floating mt-3 w-50 text-center">
+        <form className=" form-floating border-radius p-3 px-5 rounded shadow-lg" onSubmit={handleSearch}>
           <div className="form-group">
             <input
               name="mobile_number"
