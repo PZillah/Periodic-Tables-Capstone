@@ -12,7 +12,7 @@ const tablesRouter = require("./tables/tables.router");
 
 const app = express();
 
-app.use(cors({origin: `https://periodic-tables-frontend-nrbc8c5e0-pzillah.vercel.app/dashboard`}));
+app.use(cors({origin: `https://periodic-tables-backend-two.vercel.app/`}));
 app.use(express.json());
 
 app.use("/reservations", reservationsRouter);
